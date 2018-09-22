@@ -9,10 +9,15 @@
     "dtslint": "^0.3.0",
     "typescript": "^3.0.3"
   },
+  "homepage": "https://github.com/keesey/phylopic-api-types",
   "license": "MIT",
   "main": "index.d.ts",
   "name": "phylopic-api-types",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keesey/phylopic-api-types.git"
+  },
   "scripts": {
     "lint": "dtslint .",
     "test": "tsc"
