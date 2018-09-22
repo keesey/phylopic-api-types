@@ -1,0 +1,21 @@
+{
+  "author": {
+    "email": "keesey+phylopic@gmail.com",
+    "name": "T. Michael Keesey"
+  },
+  "dependencies": {},
+  "description": "Type declarations for PhyloPic API value objects.",
+  "devDependencies": {
+    "dtslint": "^0.3.0",
+    "typescript": "^3.0.3"
+  },
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "phylopic-api-types",
+  "private": true,
+  "scripts": {
+    "lint": "dtslint .",
+    "test": "tsc"
+  },
+  "version": "2.0.0-alpha"
+}
