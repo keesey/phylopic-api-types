@@ -4,11 +4,13 @@ import { Entity } from './types/Entity';
 import { EntityReference } from './types/EntityReference';
 import { Error } from './types/Error';
 import { Image, ImageLinks } from './types/Image';
+import { ImagePatch, ImagePatchLinks } from './types/ImagePatch';
 import { ImageEmbedded, ImageWithEmbedded } from './types/ImageWithEmbedded';
 import { Link } from './types/Link';
 import { Links } from './types/Links';
 import { MediaLink } from './types/MediaLink';
 import { Node, NodeLinks } from './types/Node';
+import { NodePatch, NodePatchLinks } from './types/NodePatch';
 import { NodeName, NodeNameClass, NodeNamePart } from './types/NodeName';
 import { NodeReference } from './types/NodeReference';
 import { NodeEmbedded, NodeWithEmbedded } from './types/NodeWithEmbedded';
@@ -24,6 +26,8 @@ export {
     Image,
     ImageEmbedded,
     ImageLinks,
+    ImagePatch,
+    ImagePatchLinks,
     ImageWithEmbedded,
     Link,
     Links,
@@ -34,6 +38,8 @@ export {
     NodeName,
     NodeNameClass,
     NodeNamePart,
+    NodePatch,
+    NodePatchLinks,
     NodeReference,
     NodeWithEmbedded,
     TitledLink,
