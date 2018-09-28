@@ -10,8 +10,9 @@ import { Link } from './types/Link';
 import { Links } from './types/Links';
 import { MediaLink } from './types/MediaLink';
 import { Node, NodeLinks } from './types/Node';
-import { NodePatch, NodePatchLinks } from './types/NodePatch';
 import { NodeName, NodeNameClass, NodeNamePart } from './types/NodeName';
+import { NodePatch, NodePatchLinks } from './types/NodePatch';
+import { NodePost, NodePostLinks } from './types/NodePost';
 import { NodeReference } from './types/NodeReference';
 import { NodeEmbedded, NodeWithEmbedded } from './types/NodeWithEmbedded';
 import { TitledLink } from './types/TitledLink';
@@ -40,6 +41,8 @@ export {
     NodeNamePart,
     NodePatch,
     NodePatchLinks,
+    NodePost,
+    NodePostLinks,
     NodeReference,
     NodeWithEmbedded,
     TitledLink,
