@@ -4,7 +4,6 @@ import { Links } from './Links';
 import { NodeName } from './NodeName';
 import { TitledLink } from './TitledLink';
 export declare interface NodeLinks extends Links {
-    readonly ancestor_nodes: ReadonlyArray<Link>;
     readonly child_nodes: ReadonlyArray<Link>;
     readonly descendant_image_set: Link | null;
     readonly external: ReadonlyArray<TitledLink>;
