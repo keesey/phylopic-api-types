@@ -16,6 +16,7 @@ import { NodePatch, NodePatchLinks } from './types/NodePatch';
 import { NodePost, NodePostLinks } from './types/NodePost';
 import { NodeReference } from './types/NodeReference';
 import { NodeEmbedded, NodeWithEmbedded } from './types/NodeWithEmbedded';
+import { Root, RootLinks } from './types/Root';
 import { TitledLink } from './types/TitledLink';
 export {
     Account,
@@ -48,6 +49,7 @@ export {
     NodePost,
     NodePostLinks,
     NodeReference,
-    NodeWithEmbedded,
+    Root,
+    RootLinks,
     TitledLink,
 };
