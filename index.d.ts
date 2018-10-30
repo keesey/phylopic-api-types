@@ -9,6 +9,7 @@ import { ImagePost, ImagePostLinks } from './types/ImagePost';
 import { ImageEmbedded, ImageWithEmbedded } from './types/ImageWithEmbedded';
 import { Link } from './types/Link';
 import { Links } from './types/Links';
+import { List } from './types/List';
 import { MediaLink } from './types/MediaLink';
 import { Node, NodeLinks } from './types/Node';
 import { NodeChoices, NodeChoicesEmbedded } from './types/NodeChoices'
@@ -38,6 +39,7 @@ export {
     ImageWithEmbedded,
     Link,
     Links,
+    List,
     MediaLink,
     Node,
     NodeChoices,
