@@ -19,9 +19,9 @@ export declare type ErrorType = 'ACCESS_DENIED'
     | 'UNAUTHORIZED'
     | 'UNSUPPORTED_MEDIA_TYPE';
 export declare interface Error {
-    readonly developer_message: string;
+    readonly developerMessage: string;
     readonly documentation?: string;
     readonly field?: string;
     readonly type: ErrorType;
-    readonly user_message: string;
+    readonly userMessage: string;
 }

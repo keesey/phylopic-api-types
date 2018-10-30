@@ -1,9 +1,6 @@
+import { ImagePost, ImagePostLinks } from './ImagePost';
 import { Link } from './Link';
-export declare interface ImagePatchLinks {
-    readonly general_node?: Link | null;
-    readonly license?: Link;
-    readonly specific_node?: Link;
-}
+export type ImagePatchLinks = Partial<ImagePostLinks>;
 export declare interface ImagePatch {
     readonly _links?: ImagePatchLinks;
     readonly attribution?: string | null;

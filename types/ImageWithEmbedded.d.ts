@@ -2,10 +2,10 @@ import { Account } from './Account';
 import { Image } from './Image';
 import { Node } from './Node';
 export declare interface ImageEmbedded {
-    readonly general_node: Node | null;
+    readonly contributor: Account;
+    readonly generalNode: Node | null;
     readonly nodes: ReadonlyArray<Node>;
-    readonly specific_node: Node;
-    readonly submitter: Account;
+    readonly specificNode: Node;
 }
 export declare interface ImageWithEmbedded extends Image {
     readonly _embedded: Partial<ImageEmbedded>;

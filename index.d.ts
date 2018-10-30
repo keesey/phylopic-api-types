@@ -1,4 +1,4 @@
-import { Account, AccountLinks } from './types/Account';
+import { Account, AccountLinks, AccountRole } from './types/Account';
 import { Domain, DomainLinks } from './types/Domain';
 import { Entity } from './types/Entity';
 import { EntityReference } from './types/EntityReference';
@@ -10,6 +10,7 @@ import { Link } from './types/Link';
 import { Links } from './types/Links';
 import { MediaLink } from './types/MediaLink';
 import { Node, NodeLinks } from './types/Node';
+import { NodeChoices, NodeChoicesEmbedded } from './types/NodeChoices'
 import { NodeName, NodeNameClass, NodeNamePart } from './types/NodeName';
 import { NodePatch, NodePatchLinks } from './types/NodePatch';
 import { NodePost, NodePostLinks } from './types/NodePost';
@@ -19,6 +20,7 @@ import { TitledLink } from './types/TitledLink';
 export {
     Account,
     AccountLinks,
+    AccountRole,
     Domain,
     DomainLinks,
     Entity,
@@ -34,6 +36,8 @@ export {
     Links,
     MediaLink,
     Node,
+    NodeChoices,
+    NodeChoicesEmbedded,
     NodeEmbedded,
     NodeLinks,
     NodeName,
