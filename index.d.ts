@@ -5,6 +5,7 @@ import { EntityReference } from './types/EntityReference';
 import { Error } from './types/Error';
 import { Image, ImageLinks } from './types/Image';
 import { ImagePatch, ImagePatchLinks } from './types/ImagePatch';
+import { ImagePost, ImagePostLinks } from './types/ImagePost';
 import { ImageEmbedded, ImageWithEmbedded } from './types/ImageWithEmbedded';
 import { Link } from './types/Link';
 import { Links } from './types/Links';
@@ -32,6 +33,8 @@ export {
     ImageLinks,
     ImagePatch,
     ImagePatchLinks,
+    ImagePost,
+    ImagePostLinks,
     ImageWithEmbedded,
     Link,
     Links,
