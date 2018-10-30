@@ -5,4 +5,5 @@ export interface ListEmbedded<T> {
 export interface List<T> {
   readonly _embedded: ListEmbedded<T>;
   readonly _links: Links;
+  readonly total: number;
 }
