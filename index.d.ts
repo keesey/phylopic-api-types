@@ -17,6 +17,7 @@ import { NodeName, NodeNameClass, NodeNamePart } from './types/NodeName';
 import { NodePatch, NodePatchLinks } from './types/NodePatch';
 import { NodePost, NodePostLinks } from './types/NodePost';
 import { NodeReference } from './types/NodeReference';
+import { NodeSearch } from './types/NodeSearch';
 import { NodeEmbedded, NodeWithEmbedded } from './types/NodeWithEmbedded';
 import { Root, RootLinks } from './types/Root';
 import { TitledLink } from './types/TitledLink';
@@ -54,6 +55,7 @@ export {
     NodePost,
     NodePostLinks,
     NodeReference,
+    NodeSearch,
     Root,
     RootLinks,
     TitledLink,
