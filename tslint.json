@@ -1,3 +1,13 @@
 {
-    "extends": "dtslint/dtslint.json"
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "interface-name": [true, "never-prefix"],
+        "no-conditional-assignment": false,
+        "quotemark": [true, "single", "avoid-template"]
+    },
+    "rulesDirectory": []
 }
