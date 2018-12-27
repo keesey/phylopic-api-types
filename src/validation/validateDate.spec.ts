@@ -4,7 +4,7 @@ import validateDate from './validateDate';
 import { ValidationFault } from './ValidationFault';
 describe('validation/validateDate', () => {
     const test = (value: string, isError = false) => {
-        describe(`(given the value "${value}")`, () => {
+        describe(`when given "${value}"`, () => {
             let result: ReadonlyArray<ValidationFault> = [];
             beforeEach(() => {
                 const query: { [name: string]: string; } = { value };
