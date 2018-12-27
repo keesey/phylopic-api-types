@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/keesey/phylopic-api-types",
   "license": "MIT",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "name": "phylopic-api-types",
   "private": true,
   "repository": {
@@ -31,7 +31,7 @@
     "build": "tsc",
     "lint": "tslint ./src/**/*.ts",
     "lint-fix": "tslint ./src/**/*.ts --fix",
-    "test": "mocha -r ts-node/register \"./**/*.spec.ts\""
+    "test": "mocha -r ts-node/register \"./src/**/*.spec.ts\""
   },
   "version": "2.0.0-alpha"
 }

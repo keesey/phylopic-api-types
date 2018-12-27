@@ -12,7 +12,7 @@ export * from './Links';
 export * from './List';
 export * from './MediaLink';
 export * from './Node';
-export * from './NodeChoices'
+export * from './NodeChoices';
 export * from './NodeName';
 export * from './NodePatch';
 export * from './NodePost';

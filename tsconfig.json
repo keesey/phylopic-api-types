@@ -12,7 +12,7 @@
         "strictNullChecks": true
     },
     "files": [
-        "index.ts"
+        "src/index.ts"
     ],
     "paths": {
         "phylopic-api-types": "."
