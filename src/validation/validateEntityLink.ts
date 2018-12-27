@@ -4,7 +4,7 @@ import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
 export default (link: Link | null, property: string, entityPath: string, entityLabel: string, required = false) => {
     let faults: ReadonlyArray<ValidationFault> = validateLink(link, property, required);
-    if (link && typeof link.href === 'string') {
+    if (link && link.href && typeof link.href === 'string') {
         const pathPrefix = `/${entityPath}/`;
         if (!link.href.startsWith(pathPrefix)) {
             faults = [
