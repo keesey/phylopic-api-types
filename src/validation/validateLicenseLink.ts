@@ -4,7 +4,7 @@ import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
 export default (link: Link | null, property = 'license', required = false) => {
     let faults: ReadonlyArray<ValidationFault> = validateLink(link, property, required);
-    if (link && VALID_LICENSES.indexOf(link.href) < 0) {
+    if (link && link.href && VALID_LICENSES.indexOf(link.href) < 0) {
         faults = [
             ...faults,
             {
