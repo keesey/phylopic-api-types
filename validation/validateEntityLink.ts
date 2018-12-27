@@ -1,4 +1,4 @@
-import isUUID from 'is-uuid';
+import { v4 } from 'is-uuid';
 import { Link } from '../types/Link';
 import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
@@ -16,7 +16,7 @@ export default (link: Link | null, property: string, entityPath: string, entityL
             ];
         } else {
             const uuid = link.href.substr(pathPrefix.length);
-            if (!isUUID.v4(uuid)) {
+            if (!v4(uuid)) {
                 faults = [
                     ...faults,
                     {

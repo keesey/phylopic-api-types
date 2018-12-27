@@ -7,19 +7,20 @@
     "is-uuid": "^1.0.2",
     "parse-nomen": "^1.1.1"
   },
-  "description": "Type declarations for PhyloPic API value objects.",
+  "description": "Type declarations and validation for PhyloPic API value objects.",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/is-uuid": "^1.0.0",
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
-    "dtslint": "^0.3.0",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
     "typescript": "^3.0.3"
   },
   "homepage": "https://github.com/keesey/phylopic-api-types",
   "license": "MIT",
-  "main": "index.d.ts",
+  "main": "index.ts",
   "name": "phylopic-api-types",
   "private": true,
   "repository": {
@@ -28,7 +29,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "dtslint .",
+    "lint": "tslint ./src/**/*.ts",
+    "lint-fix": "tslint ./src/**/*.ts --fix",
     "test": "mocha -r ts-node/register \"./**/*.spec.ts\""
   },
   "version": "2.0.0-alpha"
