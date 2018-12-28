@@ -22,27 +22,33 @@ const validateImagePatch = (payload: ImagePatch) => {
             if (links && typeof links === 'object') {
                 const { generalNode, license, specificNode } = links;
                 if (generalNode !== undefined) {
-                    faults.push(...validateEntityLink(generalNode, '_links.generalNode', 'nodes', 'phylogenetic node'));
+                    faults.push(...validateEntityLink(generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
                 }
                 if (license !== undefined) {
-                    faults.push(...validateLicenseLink(license, '_links.license', true));
+                    faults.push(...validateLicenseLink(license, 'license', true));
                 }
                 if (specificNode !== undefined) {
                     faults.push(
-                        ...validateEntityLink(specificNode, '_links.specificNode', 'nodes', 'phylogenetic node', true),
+                        ...validateEntityLink(specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
                     );
                 }
-                if (attribution !== undefined) {
-                    if (
-                        typeof attribution !== 'string'
-                        && links.license && LICENSE_COMPONENTS[links.license.href].indexOf('by') >= 0
-                    ) {
-                        faults.push({
-                            field: 'attribution',
-                            message: `License requires attribution: "${links.license.href}".`,
-                        });
-                    }
+                if (attribution === null
+                    && links.license
+                    && (LICENSE_COMPONENTS[links.license.href] || '').indexOf('by') >= 0
+                ) {
+                    faults.push({
+                        field: 'attribution',
+                        message: `License requires attribution: "${links.license.href}".`,
+                    });
                 }
+            }
+        }
+        if (typeof attribution !== 'undefined') {
+            if (attribution !== null && typeof attribution !== 'string') {
+                faults.push({
+                    field: 'attribution',
+                    message: 'Attribution must be a string.',
+                });
             }
         }
     }
