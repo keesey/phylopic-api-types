@@ -32,8 +32,7 @@ describe('validation/validateTitledLink', () => {
     test({}, false, ['link.href', 'link.title']);
     test({ href: null }, false, ['link.href', 'link.title']);
     test({ href: '' }, false, ['link.href', 'link.title']);
-    test({ href: '/foo' }, false, ['link.title']);
-    test({ href: '#foo' }, false, ['link.title']);
+    test({ href: 'foo' }, false, ['link.title']);
     test({ title: 'foo' }, false, ['link.href']);
     test({ href: 'foo', title: 'bar' });
 });
