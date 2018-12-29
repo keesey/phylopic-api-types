@@ -108,6 +108,33 @@ describe('validation/validateImagePost', () => {
         const isPublicDomain = PUBLIC_DOMAIN_LICENSES[href];
         test(post, isPublicDomain ? [] : ['attribution']);
     });
+    VALID_LICENSES.forEach((href) => {
+        const post: ImagePost = {
+            _links: {
+                generalNode: null,
+                license: { href },
+                specificNode: {
+                    href: `/nodes/${UUIDV4}`,
+                },
+            },
+            attribution: '   ',
+        };
+        const isPublicDomain = PUBLIC_DOMAIN_LICENSES[href];
+        test(post, isPublicDomain ? [] : ['attribution']);
+    });
+    VALID_LICENSES.forEach((href) => {
+        const post: ImagePost = {
+            _links: {
+                generalNode: null,
+                license: { href },
+                specificNode: {
+                    href: `/nodes/${UUIDV4}`,
+                },
+            },
+            attribution: 'foo',
+        };
+        test(post);
+    });
     test({
         _links: {
             generalNode: '',
