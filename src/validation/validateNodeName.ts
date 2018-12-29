@@ -13,12 +13,12 @@ const validateNodeName = (name: NodeName, index: number, field = 'names') => {
     const faults: ValidationFault[] = [];
     if (!Array.isArray(name)) {
         faults.push({
-            field,
+            field: `${field}[${index}]`,
             message: 'Node name is not an array.',
         });
     } else if (!name.length) {
         faults.push({
-            field,
+            field: `${field}[${index}]`,
             message: 'Node name is empty.',
         });
     } else {
