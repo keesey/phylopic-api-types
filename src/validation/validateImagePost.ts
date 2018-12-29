@@ -19,12 +19,12 @@ const validateImagePost = (payload: ImagePost) => {
             typeof payload.attribution === 'string' ? (payload.attribution.trim().replace(/\s+/g, ' ') || null) : null;
         const { _links: links } = payload;
         if (links) {
-            faults.push(...validateEntityLink(links.generalNode, '_links.generalNode', 'nodes', 'phylogenetic node'));
-            faults.push(...validateLicenseLink(links.license, '_links.license', true));
+            faults.push(...validateEntityLink(links.generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
+            faults.push(...validateLicenseLink(links.license, 'license', true));
             faults.push(
-                ...validateEntityLink(links.specificNode, '_links.specificNode', 'nodes', 'phylogenetic node', true),
+                ...validateEntityLink(links.specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
             );
-            if (!attribution && links.license && LICENSE_COMPONENTS[links.license.href].indexOf('by') >= 0) {
+            if (!attribution && links.license && (LICENSE_COMPONENTS[links.license.href] || '').indexOf('by') >= 0) {
                 faults.push({
                     field: 'attribution',
                     message: `License requires attribution: "${links.license.href}".`,
@@ -32,6 +32,15 @@ const validateImagePost = (payload: ImagePost) => {
             }
         } else {
             faults.push(createMissingFieldError('_links'));
+        }
+        if (typeof payload.attribution !== 'undefined'
+            && payload.attribution !== null
+            && typeof payload.attribution !== 'string'
+        ) {
+            faults.push({
+                field: 'attribution',
+                message: 'Attribution must be a string or null.',
+            });
         }
     }
     return faults as ReadonlyArray<ValidationFault>;

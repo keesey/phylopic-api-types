@@ -43,13 +43,14 @@ const validateImagePatch = (payload: ImagePatch) => {
                 }
             }
         }
-        if (typeof attribution !== 'undefined') {
-            if (attribution !== null && typeof attribution !== 'string') {
-                faults.push({
-                    field: 'attribution',
-                    message: 'Attribution must be a string.',
-                });
-            }
+        if (typeof payload.attribution !== 'undefined'
+            && payload.attribution !== null
+            && typeof payload.attribution !== 'string'
+        ) {
+            faults.push({
+                field: 'attribution',
+                message: 'Attribution must be a string or null.',
+            });
         }
     }
     return faults as ReadonlyArray<ValidationFault>;
