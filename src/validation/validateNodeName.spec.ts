@@ -83,7 +83,7 @@ describe('validation/validateNodeName', () => {
             { class: NomenPartClass.SCIENTIFIC, text: 'Troglodytes' },
             { class: NomenPartClass.CITATION, text: 'Vieillot 1809' },
             { class: NomenPartClass.COMMENT, text: 'non' },
-            { class: NomenPartClass.CITATION, text: 'Savage' },
+            { class: NomenPartClass.CITATION, text: 'St. Hilaire 1812' },
         ],
     );
 });
