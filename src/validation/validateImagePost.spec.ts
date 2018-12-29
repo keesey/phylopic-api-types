@@ -146,8 +146,8 @@ describe('validation/validateImagePost', () => {
             },
         },
     }, [
-            '_links.generalNode',
-            '_links.license.href',
-            '_links.specificNode.href',
-        ]);
+        '_links.generalNode',
+        '_links.license.href',
+        '_links.specificNode.href',
+    ]);
 });
