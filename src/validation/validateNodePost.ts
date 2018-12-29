@@ -1,9 +1,9 @@
 import { NodePost } from '../types/NodePost';
 import { TitledLink } from '../types/TitledLink';
 import validateEntityLink from './validateEntityLink';
+import validateLink from './validateLink';
 import validateLinks from './validateLinks';
 import validateNodeName from './validateNodeName';
-import validateTitledLink from './validateTitledLink';
 import { ValidationFault } from './ValidationFault';
 const validateNodePost = (payload: NodePost) => {
     let faults: ValidationFault[] = [];
@@ -14,69 +14,53 @@ const validateNodePost = (payload: NodePost) => {
         });
     } else {
         const { _links, names, root } = payload;
-        if (root) {
-            faults.push({
-                field: 'root',
-                message: 'New phylogenetic nodes cannot be root nodes.',
-            });
-        } else if (!_links || !_links.parentNode) {
-            faults.push({
-                field: '_links.parentNode',
-                message: 'This phylogenetic node requires a parent node.',
-            });
-        }
-        if (_links !== undefined) {
-            faults = [...faults, ...validateLinks(_links)];
+        faults.push(...validateLinks(_links));
+        if (_links) {
             if (_links && typeof _links === 'object') {
-                const { parentNode, external } = _links;
-                if (parentNode !== undefined) {
-                    // NOTE: `required` is `false` because it is already checked above.
-                    faults = [
-                        ...faults,
-                        ...validateEntityLink(parentNode, 'parentNode', 'nodes', 'phylogenetic node'),
-                    ];
-                }
+                const { external, parentNode } = _links;
                 if (external !== undefined) {
                     if (!Array.isArray(external)) {
                         faults.push({
-                            field: '_links.parentNode',
-                            message: 'This phylogenetic node requires a parent node.',
+                            field: '_links.external',
+                            message: 'The list of external links must be an array.',
                         });
                     } else {
                         external.forEach((link: TitledLink, index) => {
                             const field = `external[${index}]`;
                             if (!link || typeof link !== 'object') {
                                 faults.push({
-                                    field,
+                                    field: `_links.${field}`,
                                     message: 'Invalid entry in external links.',
                                 });
                             } else {
-                                const linkErrors = validateTitledLink(link, field);
+                                const linkErrors = validateLink(link, field);
                                 if (linkErrors.length) {
-                                    faults = [...faults, ...linkErrors];
+                                    faults.push(...linkErrors);
                                 } else {
                                     if (typeof link.href && !/http:\/\/eol\.org\/\d+$/.test(link.href)) {
                                         faults.push({
-                                            field: `${field}.href`,
+                                            field: `_links.${field}.href`,
                                             message:
                                                 'Currently PhyloPic only accepts external links to the'
-                                                + ' Encyclopedia of Life <http://eol.org/:taxonID>.',
+                                                + ' Encyclopedia of Life (format: <http://eol.org/:taxonID>).',
                                         });
-                                    } else {
-                                        if (link.title !== 'Encyclopedia of Life') {
-                                            faults.push({
-                                                field: `${field}.title`,
-                                                message:
-                                                    'External link must be titled "Encyclopedia of Life".',
-                                            });
-                                        }
                                     }
                                 }
                             }
                         });
                     }
                 }
+                if (parentNode) {
+                    // NOTE: `required` is `false` because it is already checked below.
+                    faults.push(...validateEntityLink(parentNode, 'parentNode', 'nodes', 'phylogenetic node'));
+                }
             }
+        }
+        if (_links && (!_links.parentNode || typeof _links.parentNode !== 'object')) {
+            faults.push({
+                field: '_links.parentNode',
+                message: 'This phylogenetic node requires a parent node.',
+            });
         }
         if (!Array.isArray(names) || !names.length) {
             faults.push({
@@ -92,6 +76,11 @@ const validateNodePost = (payload: NodePost) => {
             faults.push({
                 field: 'root',
                 message: 'Invalid root flag.',
+            });
+        } else if (root) {
+            faults.push({
+                field: 'root',
+                message: 'New phylogenetic nodes cannot be root nodes.',
             });
         }
     }

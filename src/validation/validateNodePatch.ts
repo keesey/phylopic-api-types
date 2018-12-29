@@ -42,7 +42,7 @@ const validateNodePatch = (payload: NodePatch) => {
                                         field: `_links.${field}.href`,
                                         message:
                                             'Currently PhyloPic only accepts external links to the'
-                                            + ' Encyclopedia of Life <http://eol.org/:taxonID>.',
+                                            + ' Encyclopedia of Life (format: <http://eol.org/:taxonID>).',
                                     });
                                 }
                                 if (link.title !== undefined && link.title !== 'Encyclopedia of Life') {

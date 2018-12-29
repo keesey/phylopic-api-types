@@ -1,5 +1,6 @@
 import { Link } from './Link';
 import { NodeName } from './NodeName';
+import { TitledLink } from './TitledLink';
 export declare interface NodePostLinks {
     readonly external?: ReadonlyArray<Link>;
     readonly parentNode: Link | null;
