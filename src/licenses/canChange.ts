@@ -1,5 +1,5 @@
 import PERMITTED_LICENSE_CHANGES from './PERMITTED_LICENSE_CHANGES';
-const canChange = (a: string, b: string) => {
+export const canChange = (a: string, b: string) => {
     if (a === b) {
         return true;
     }

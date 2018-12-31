@@ -7,7 +7,7 @@ const createMissingFieldError = (field: string) => ({
     field,
     message: `The "${field}" field is missing.`,
 } as ValidationFault);
-const validateImagePost = (payload: ImagePost) => {
+export const validateImagePost = (payload: ImagePost) => {
     const faults: ValidationFault[] = [];
     if (!payload || typeof payload !== 'object') {
         faults.push({

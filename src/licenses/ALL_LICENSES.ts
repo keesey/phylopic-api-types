@@ -1,5 +1,5 @@
 import VALID_LICENSES from './VALID_LICENSES';
-const ALL_LICENSES = [
+export const ALL_LICENSES = [
     ...VALID_LICENSES,
     // Legacy licenses:
     'https://creativecommons.org/licenses/by/3.0/',

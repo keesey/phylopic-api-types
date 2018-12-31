@@ -5,7 +5,7 @@ import validateLink from './validateLink';
 import validateLinks from './validateLinks';
 import validateNodeName from './validateNodeName';
 import { ValidationFault } from './ValidationFault';
-const validateNodePost = (payload: NodePost) => {
+export const validateNodePost = (payload: NodePost) => {
     let faults: ValidationFault[] = [];
     if (!payload || typeof payload !== 'object') {
         faults.push({

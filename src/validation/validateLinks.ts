@@ -1,5 +1,5 @@
 import { ValidationFault } from './ValidationFault';
-const validateLinks = (links: any) => {
+export const validateLinks = (links: any) => {
     const faults: ValidationFault[] = [];
     if (!links || typeof links !== 'object') {
         faults.push({

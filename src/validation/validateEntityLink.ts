@@ -2,7 +2,7 @@ import { v4 } from 'is-uuid';
 import { Link } from '../types/Link';
 import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
-const validateEntityLink = (
+export const validateEntityLink = (
     link: Link | null,
     property: string,
     entityPath: string,

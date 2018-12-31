@@ -1,5 +1,5 @@
 import { ValidationFault } from './ValidationFault';
-const validateDate = (query: { [name: string]: string; }, field: string) => {
+export const validateDate = (query: { [name: string]: string; }, field: string) => {
     const value = query[field];
     if (!/^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value)) {
         return [{

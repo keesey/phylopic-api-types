@@ -4,7 +4,7 @@ import validateEntityLink from './validateEntityLink';
 import validateLicenseLink from './validateLicenseLink';
 import validateLinks from './validateLinks';
 import { ValidationFault } from './ValidationFault';
-const validateImagePatch = (payload: ImagePatch) => {
+export const validateImagePatch = (payload: ImagePatch) => {
     const faults: ValidationFault[] = [];
     if (!payload || typeof payload !== 'object') {
         faults.push({

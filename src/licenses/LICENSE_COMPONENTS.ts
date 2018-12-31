@@ -1,4 +1,4 @@
-const LICENSE_COMPONENTS: { [url: string]: string[]; } = {
+export const LICENSE_COMPONENTS: { [url: string]: string[]; } = {
     'https://creativecommons.org/licenses/by-nc-sa/3.0/': ['by', 'nc', 'sa'],
     'https://creativecommons.org/licenses/by-nc/3.0/': ['by', 'nc'],
     'https://creativecommons.org/licenses/by-sa/3.0/': ['by', 'sa'],

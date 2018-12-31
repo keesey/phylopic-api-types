@@ -1,4 +1,4 @@
-const PERMITTED_LICENSE_CHANGES: { [url: string]: string[]; } = {
+export const PERMITTED_LICENSE_CHANGES: { [url: string]: string[]; } = {
     'https://creativecommons.org/licenses/by-nc-sa/3.0/':
         [
             'https://creativecommons.org/licenses/by/4.0/',

@@ -1,6 +1,6 @@
 import { Link } from '../types/Link';
 import { ValidationFault } from './ValidationFault';
-const validateLink = (link: Link | null, property: string, required = false) => {
+export const validateLink = (link: Link | null, property: string, required = false) => {
     const faults: ValidationFault[] = [];
     if (link === null) {
         if (required) {

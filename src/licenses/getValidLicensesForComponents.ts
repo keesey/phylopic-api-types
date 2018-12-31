@@ -1,6 +1,6 @@
 import ALL_LICENSES from './ALL_LICENSES';
 import LICENSE_COMPONENTS from './LICENSE_COMPONENTS';
-const getValidLicensesForComponents = (components: string[]) => {
+export const getValidLicensesForComponents = (components: string[]) => {
     let licenses = [...ALL_LICENSES];
     components.forEach((component) => {
         if (!licenses.length) {

@@ -9,7 +9,7 @@ const NOMEN_PART_CLASSES = [
     NomenPartClass.SCIENTIFIC,
     NomenPartClass.VERNACULAR,
 ];
-const validateNodeName = (name: NodeName, index: number, field = 'names') => {
+export const validateNodeName = (name: NodeName, index: number, field = 'names') => {
     const faults: ValidationFault[] = [];
     if (!Array.isArray(name)) {
         faults.push({
