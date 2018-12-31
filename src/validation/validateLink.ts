@@ -1,6 +1,6 @@
 import { Link } from '../types/Link';
 import { ValidationFault } from './ValidationFault';
-export default (link: Link | null, property: string, required = false) => {
+const validateLink = (link: Link | null, property: string, required = false) => {
     const faults: ValidationFault[] = [];
     if (link === null) {
         if (required) {
@@ -24,3 +24,4 @@ export default (link: Link | null, property: string, required = false) => {
     }
     return faults as ReadonlyArray<ValidationFault>;
 };
+export default validateLink;

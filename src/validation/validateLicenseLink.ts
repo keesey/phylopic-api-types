@@ -2,7 +2,7 @@ import VALID_LICENSES from '../licenses/VALID_LICENSES';
 import { Link } from '../types/Link';
 import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
-export default (link: Link | null, property = 'license', required = false) => {
+const validateLicenseLink = (link: Link | null, property = 'license', required = false) => {
     let faults: ReadonlyArray<ValidationFault> = validateLink(link, property, required);
     if (link && link.href && VALID_LICENSES.indexOf(link.href) < 0) {
         faults = [
@@ -15,3 +15,4 @@ export default (link: Link | null, property = 'license', required = false) => {
     }
     return faults;
 };
+export default validateLicenseLink;

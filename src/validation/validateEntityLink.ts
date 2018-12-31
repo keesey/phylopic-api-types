@@ -2,7 +2,13 @@ import { v4 } from 'is-uuid';
 import { Link } from '../types/Link';
 import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
-export default (link: Link | null, property: string, entityPath: string, entityLabel: string, required = false) => {
+const validateEntityLink = (
+    link: Link | null,
+    property: string,
+    entityPath: string,
+    entityLabel: string,
+    required = false,
+) => {
     let faults: ReadonlyArray<ValidationFault> = validateLink(link, property, required);
     if (link && link.href && typeof link.href === 'string') {
         const pathPrefix = `/${entityPath}/`;
@@ -29,3 +35,4 @@ export default (link: Link | null, property: string, entityPath: string, entityL
     }
     return faults;
 };
+export default validateEntityLink;
