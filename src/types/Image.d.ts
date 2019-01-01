@@ -8,7 +8,7 @@ export declare interface ImageLinks extends ImagePostLinks, Links {
     readonly 'http://ogp.me/ns#image': MediaLink;
     readonly nodes: ReadonlyArray<Link>;
     readonly rasterFiles: ReadonlyArray<MediaLink>;
-    readonly sourceFile: ReadonlyArray<MediaLink>;
+    readonly sourceFile: MediaLink;
     readonly 'twitter:image': MediaLink;
 }
 export declare interface Image extends Entity {
