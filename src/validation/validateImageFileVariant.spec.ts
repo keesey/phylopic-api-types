@@ -41,9 +41,12 @@ describe('validation/validateImageFileVariant', () => {
     test('square512');
     test('square1024');
     test('basic', true);
+    test('BASIC32', true);
     test('basic33', true);
     test('social', true);
+    test('SOCIAL440x220', true);
     test('social1200', true);
     test('square', true);
+    test('SQUarE512', true);
     test('square2048', true);
 });

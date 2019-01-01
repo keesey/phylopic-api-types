@@ -1,3 +1,4 @@
+export * from './validateBoolean';
 export * from './validateDate';
 export * from './validateEntityLink';
 export * from './validateImageFileVariant';
