@@ -1,5 +1,6 @@
 export * from './validateDate';
 export * from './validateEntityLink';
+export * from './validateImageFileVariant';
 export * from './validateImagePatch';
 export * from './validateImagePost';
 export * from './validateLicenseComponents';
