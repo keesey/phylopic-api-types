@@ -1,4 +1,3 @@
-import { Link } from './Link';
 import { NodeName } from './NodeName';
 import { NodePostLinks } from './NodePost';
 export type NodePatchLinks = Partial<NodePostLinks>;

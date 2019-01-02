@@ -5,7 +5,7 @@ export declare interface NodeEmbedded {
     readonly childNodes: ReadonlyArray<Node>;
     readonly contributor: Account | null;
     readonly parentNode: Node | null;
-    readonly primaryImage: Node | null;
+    readonly primaryImage: Image | null;
 }
 export declare interface NodeWithEmbedded extends Node {
     readonly _embedded: Partial<NodeEmbedded>;

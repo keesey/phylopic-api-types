@@ -1,9 +1,9 @@
 import { Links } from './Links';
 import { Node } from './Node';
-export interface NodeChoicesEmbedded {
+export declare interface NodeChoicesEmbedded {
     readonly choices: ReadonlyArray<Node>;
 }
-export interface NodeChoices {
+export declare interface NodeChoices {
     readonly _embedded: NodeChoicesEmbedded;
     readonly _links: Links;
 }
