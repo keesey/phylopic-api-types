@@ -1,21 +1,20 @@
 {
     "compilerOptions": {
-        "esModuleInterop": true,
+        "declaration": true,
         "forceConsistentCasingInFileNames": true,
-        "lib": [
-            "es6"
-        ],
         "module": "commonjs",
-        "moduleResolution": "node",
-        "noEmit": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
+        "outDir": "dist",
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "target": "es2016"
     },
-    "files": [
-        "src/index.ts"
+    "exclude": [
+        "./**/*.spec.ts"
+    ],
+    "include": [
+        "./src/**/*.ts"
     ],
     "paths": {
         "phylopic-api-types": "."
