@@ -1,3 +1,4 @@
+export * from './contentTypes';
 export * from './licenses';
-export * from './types';
+export * from './models';
 export * from './validation';
