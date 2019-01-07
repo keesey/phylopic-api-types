@@ -6,6 +6,7 @@ export * from './Error';
 export * from './Image';
 export * from './ImagePatch';
 export * from './ImagePost';
+export * from './ImageSearch';
 export * from './ImageWithEmbedded';
 export * from './Link';
 export * from './Links';
