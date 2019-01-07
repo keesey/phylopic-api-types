@@ -4,13 +4,13 @@
     "name": "T. Michael Keesey"
   },
   "dependencies": {
+    "@types/is-uuid": "^1.0.0",
     "is-uuid": "^1.0.2",
     "parse-nomen": "^1.1.1"
   },
   "description": "Type declarations and validation for PhyloPic API value objects.",
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/is-uuid": "^1.0.0",
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
