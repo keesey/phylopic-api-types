@@ -1,5 +1,5 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
-import { ImagePatch } from '../types/ImagePatch';
+import { ImagePatch } from '../models/ImagePatch';
 import validateEntityLink from './validateEntityLink';
 import validateLicenseLink from './validateLicenseLink';
 import validateLinks from './validateLinks';

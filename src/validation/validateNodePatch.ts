@@ -1,6 +1,6 @@
-import { Link } from '../types/Link';
-import { NodePatch } from '../types/NodePatch';
-import { TitledLink } from '../types/TitledLink';
+import { Link } from '../models/Link';
+import { NodePatch } from '../models/NodePatch';
+import { TitledLink } from '../models/TitledLink';
 import validateEntityLink from './validateEntityLink';
 import validateLink from './validateLink';
 import validateLinks from './validateLinks';

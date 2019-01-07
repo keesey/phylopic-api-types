@@ -1,5 +1,5 @@
 import { NomenPartClass } from 'parse-nomen';
-import { NodeName } from '../types/NodeName';
+import { NodeName } from '../models/NodeName';
 import { ValidationFault } from './ValidationFault';
 const NOMEN_PART_CLASSES = [
     NomenPartClass.CITATION,

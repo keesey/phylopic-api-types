@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import PUBLIC_DOMAIN_LICENSES from '../licenses/PUBLIC_DOMAIN_LICENSES';
 import VALID_LICENSES from '../licenses/VALID_LICENSES';
-import { ImagePatch } from '../types/ImagePatch';
+import { ImagePatch } from '../models/ImagePatch';
 import validateImagePatch from './validateImagePatch';
 import { ValidationFault } from './ValidationFault';
 const UUIDV1 = 'f70ad9a4-0acb-11e9-ab14-d663bd873d93';

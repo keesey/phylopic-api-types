@@ -1,5 +1,5 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
-import { ImagePost } from '../types/ImagePost';
+import { ImagePost } from '../models/ImagePost';
 import validateEntityLink from './validateEntityLink';
 import validateLicenseLink from './validateLicenseLink';
 import { ValidationFault } from './ValidationFault';

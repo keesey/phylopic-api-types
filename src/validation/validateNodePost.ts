@@ -1,5 +1,5 @@
-import { NodePost } from '../types/NodePost';
-import { TitledLink } from '../types/TitledLink';
+import { NodePost } from '../models/NodePost';
+import { TitledLink } from '../models/TitledLink';
 import validateEntityLink from './validateEntityLink';
 import validateLink from './validateLink';
 import validateLinks from './validateLinks';

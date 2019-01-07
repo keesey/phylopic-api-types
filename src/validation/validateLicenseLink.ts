@@ -1,5 +1,5 @@
 import VALID_LICENSES from '../licenses/VALID_LICENSES';
-import { Link } from '../types/Link';
+import { Link } from '../models/Link';
 import validateLink from './validateLink';
 import { ValidationFault } from './ValidationFault';
 export const validateLicenseLink = (link: Link | null, property = 'license', required = false) => {
