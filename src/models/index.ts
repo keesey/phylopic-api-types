@@ -21,4 +21,5 @@ export * from './NodeReference';
 export * from './NodeSearch';
 export * from './NodeWithEmbedded';
 export * from './Root';
+export * from './Submission';
 export * from './TitledLink';
