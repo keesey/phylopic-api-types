@@ -1,6 +1,7 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
 import { ImagePatch } from '../models/ImagePatch';
 import validateEntityLink from './validateEntityLink';
+import validateImageFileLink from './validateImageFileLink';
 import validateLicenseLink from './validateLicenseLink';
 import validateLinks from './validateLinks';
 import { ValidationFault } from './ValidationFault';
@@ -20,12 +21,17 @@ export const validateImagePatch = (payload: ImagePatch) => {
         if (links !== undefined) {
             faults.push(...validateLinks(links));
             if (links && typeof links === 'object') {
-                const { generalNode, license, specificNode } = links;
+                const { generalNode, license, sourceFile, specificNode } = links;
                 if (generalNode !== undefined) {
                     faults.push(...validateEntityLink(generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
                 }
                 if (license !== undefined) {
                     faults.push(...validateLicenseLink(license, 'license', true));
+                }
+                if (sourceFile !== undefined) {
+                    faults.push(
+                        ...validateImageFileLink(sourceFile, 'sourceFile', true),
+                    );
                 }
                 if (specificNode !== undefined) {
                     faults.push(

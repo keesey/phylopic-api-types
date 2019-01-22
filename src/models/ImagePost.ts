@@ -2,6 +2,7 @@ import { Link } from './Link';
 export declare interface ImagePostLinks {
     readonly generalNode: Link | null;
     readonly license: Link;
+    readonly sourceFile: Link;
     readonly specificNode: Link;
 }
 export declare interface ImagePost {

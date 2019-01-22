@@ -1,6 +1,7 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
 import { ImagePost } from '../models/ImagePost';
 import validateEntityLink from './validateEntityLink';
+import validateImageFileLink from './validateImageFileLink';
 import validateLicenseLink from './validateLicenseLink';
 import { ValidationFault } from './ValidationFault';
 const createMissingFieldError = (field: string) => ({
@@ -21,6 +22,7 @@ export const validateImagePost = (payload: ImagePost) => {
         if (links) {
             faults.push(...validateEntityLink(links.generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
             faults.push(...validateLicenseLink(links.license, 'license', true));
+            faults.push(...validateImageFileLink(links.sourceFile, 'sourceFile', true));
             faults.push(
                 ...validateEntityLink(links.specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
             );

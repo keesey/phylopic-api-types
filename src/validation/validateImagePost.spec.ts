@@ -19,13 +19,14 @@ describe('validation/validateImagePost', () => {
                 expect(Array.isArray(result)).to.be.true;
                 /* tslint:enable:no-unused-expression */
             });
-            it(`should yield ${errorFields.length} error${errorFields.length === 1 ? '' : 's'}`, () => {
-                expect(result.length).to.equal(errorFields.length);
-            });
             if (errorFields.length) {
                 it('should yield the expected error fields', () => {
                     const actual = result.map((fault) => fault.field);
                     expect(actual).to.deep.equal(errorFields);
+                });
+            } else {
+                it('should yield no errors', () => {
+                    expect(result.length).to.equal(0);
                 });
             }
         });
@@ -38,67 +39,100 @@ describe('validation/validateImagePost', () => {
     test({ attribution: {} }, ['_links', 'attribution']);
     test({ attribution: 'foo' }, ['_links']);
     test({ _links: null }, ['_links']);
-    test({ _links: {} }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { generalNode: null } }, ['_links.license', '_links.specificNode']);
-    test({ _links: { generalNode: '' } }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { generalNode: {} } }, ['_links.generalNode.href', '_links.license', '_links.specificNode']);
+    test({ _links: {} }, ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode']);
+    test({ _links: { generalNode: null } }, ['_links.license', '_links.sourceFile', '_links.specificNode']);
+    test(
+        { _links: { generalNode: '' } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { generalNode: {} } },
+        ['_links.generalNode.href', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
     test(
         { _links: { generalNode: { href: null } } },
-        ['_links.generalNode.href', '_links.license', '_links.specificNode'],
+        ['_links.generalNode.href', '_links.license', '_links.sourceFile', '_links.specificNode'],
     );
     test(
         { _links: { generalNode: { href: '/foo' } } },
-        ['_links.generalNode.href', '_links.license', '_links.specificNode'],
+        ['_links.generalNode.href', '_links.license', '_links.sourceFile', '_links.specificNode'],
     );
     test(
         { _links: { generalNode: { href: `/nodes/${UUIDV1}` } } },
-        ['_links.generalNode.href', '_links.license', '_links.specificNode'],
+        ['_links.generalNode.href', '_links.license', '_links.sourceFile', '_links.specificNode'],
     );
     test(
         { _links: { generalNode: { href: `/nodes/${UUIDV4}` } } },
-        ['_links.license', '_links.specificNode'],
+        ['_links.license', '_links.sourceFile', '_links.specificNode'],
     );
-    test({ _links: { license: null } }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { license: '' } }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { license: {} } }, ['_links.generalNode', '_links.license.href', '_links.specificNode']);
-    test({ _links: { license: { href: null } } }, ['_links.generalNode', '_links.license.href', '_links.specificNode']);
+    test(
+        { _links: { license: null } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { license: '' } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { license: {} } },
+        ['_links.generalNode', '_links.license.href', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { license: { href: null } } },
+        ['_links.generalNode', '_links.license.href', '_links.sourceFile', '_links.specificNode'],
+    );
     test(
         { _links: { license: { href: 'foo' } } },
-        ['_links.generalNode', '_links.license.href', '_links.specificNode'],
+        ['_links.generalNode', '_links.license.href', '_links.sourceFile', '_links.specificNode'],
     );
     VALID_LICENSES.forEach((href) => {
         const isPublicDomain = PUBLIC_DOMAIN_LICENSES[href];
-        const errorFields = ['_links.generalNode', '_links.specificNode'];
+        const errorFields = ['_links.generalNode', '_links.sourceFile', '_links.specificNode'];
         if (!isPublicDomain) {
             errorFields.push('attribution');
         }
         test({ _links: { license: { href } } }, errorFields);
-        test({ _links: { license: { href } }, attribution: 'foo' }, ['_links.generalNode', '_links.specificNode']);
+        test(
+            { _links: { license: { href } }, attribution: 'foo' },
+            ['_links.generalNode', '_links.sourceFile', '_links.specificNode'],
+        );
     });
-    test({ _links: { specificNode: null } }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { specificNode: '' } }, ['_links.generalNode', '_links.license', '_links.specificNode']);
-    test({ _links: { specificNode: {} } }, ['_links.generalNode', '_links.license', '_links.specificNode.href']);
+    test(
+        { _links: { specificNode: null } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { specificNode: '' } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
+    test(
+        { _links: { specificNode: {} } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode.href'],
+    );
     test(
         { _links: { specificNode: { href: null } } },
-        ['_links.generalNode', '_links.license', '_links.specificNode.href'],
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode.href'],
     );
     test(
         { _links: { specificNode: { href: '/foo' } } },
-        ['_links.generalNode', '_links.license', '_links.specificNode.href'],
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode.href'],
     );
     test(
         { _links: { specificNode: { href: `/nodes/${UUIDV1}` } } },
-        ['_links.generalNode', '_links.license', '_links.specificNode.href'],
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode.href'],
     );
     test(
         { _links: { specificNode: { href: `/nodes/${UUIDV4}` } } },
-        ['_links.generalNode', '_links.license'],
+        ['_links.generalNode', '_links.license', '_links.sourceFile'],
     );
     VALID_LICENSES.forEach((href) => {
         const post: ImagePost = {
             _links: {
                 generalNode: null,
                 license: { href },
+                sourceFile: {
+                    href: 'data:image/png;base64,FOO',
+                },
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
@@ -113,6 +147,9 @@ describe('validation/validateImagePost', () => {
             _links: {
                 generalNode: null,
                 license: { href },
+                sourceFile: {
+                    href: 'data:image/png;base64,FOO',
+                },
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
@@ -127,6 +164,9 @@ describe('validation/validateImagePost', () => {
             _links: {
                 generalNode: null,
                 license: { href },
+                sourceFile: {
+                    href: 'data:image/png;base64,FOO',
+                },
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
@@ -141,6 +181,9 @@ describe('validation/validateImagePost', () => {
             license: {
                 href: 'foo',
             },
+            sourceFile: {
+                href: 'foo',
+            },
             specificNode: {
                 href: `/nodes/${UUIDV1}`,
             },
@@ -148,6 +191,7 @@ describe('validation/validateImagePost', () => {
     }, [
         '_links.generalNode',
         '_links.license.href',
+        '_links.sourceFile.href',
         '_links.specificNode.href',
     ]);
 });
