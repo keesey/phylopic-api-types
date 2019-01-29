@@ -1,7 +1,6 @@
 export * from './validateBoolean';
 export * from './validateDate';
 export * from './validateEntityLink';
-export * from './validateImageFileLink';
 export * from './validateImagePatch';
 export * from './validateImagePost';
 export * from './validateLicenseComponents';
@@ -10,5 +9,7 @@ export * from './validateLink';
 export * from './validateNodeName';
 export * from './validateNodePatch';
 export * from './validateNodePost';
+export * from './validateRasterImageFileLink';
 export * from './validateTitledLink';
+export * from './validateVectorImageFileLink';
 export * from './ValidationFault';
