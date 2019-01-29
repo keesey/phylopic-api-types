@@ -125,6 +125,10 @@ describe('validation/validateImagePost', () => {
         { _links: { specificNode: { href: `/nodes/${UUIDV4}` } } },
         ['_links.generalNode', '_links.license', '_links.sourceFile'],
     );
+    test(
+        { _links: { vectorNode: { href: 'data:image/svg+xml,FOO' } } },
+        ['_links.generalNode', '_links.license', '_links.sourceFile', '_links.specificNode'],
+    );
     VALID_LICENSES.forEach((href) => {
         const post: ImagePost = {
             _links: {

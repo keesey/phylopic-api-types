@@ -1,9 +1,10 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
 import { ImagePatch } from '../models/ImagePatch';
 import validateEntityLink from './validateEntityLink';
-import validateImageFileLink from './validateImageFileLink';
 import validateLicenseLink from './validateLicenseLink';
 import validateLinks from './validateLinks';
+import validateRasterImageFileLink from './validateRasterImageFileLink';
+import validateVectorImageFileLink from './validateVectorImageFileLink';
 import { ValidationFault } from './ValidationFault';
 export const validateImagePatch = (payload: ImagePatch) => {
     const faults: ValidationFault[] = [];
@@ -21,7 +22,7 @@ export const validateImagePatch = (payload: ImagePatch) => {
         if (links !== undefined) {
             faults.push(...validateLinks(links));
             if (links && typeof links === 'object') {
-                const { generalNode, license, sourceFile, specificNode } = links;
+                const { generalNode, license, sourceFile, specificNode, vectorFile } = links;
                 if (generalNode !== undefined) {
                     faults.push(...validateEntityLink(generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
                 }
@@ -30,12 +31,23 @@ export const validateImagePatch = (payload: ImagePatch) => {
                 }
                 if (sourceFile !== undefined) {
                     faults.push(
-                        ...validateImageFileLink(sourceFile, 'sourceFile', true),
+                        ...validateRasterImageFileLink(sourceFile, 'sourceFile', true),
                     );
                 }
                 if (specificNode !== undefined) {
                     faults.push(
                         ...validateEntityLink(specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
+                    );
+                }
+                if (vectorFile !== undefined) {
+                    if (!sourceFile) {
+                        faults.push({
+                            field: '_links.sourceFile',
+                            message: 'The "sourceFile" link must be included if there is a "vectorFile" link.',
+                        });
+                    }
+                    faults.push(
+                        ...validateVectorImageFileLink(vectorFile, 'vectorFile', true),
                     );
                 }
                 if (attribution === null

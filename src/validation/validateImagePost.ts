@@ -1,8 +1,9 @@
 import LICENSE_COMPONENTS from '../licenses/LICENSE_COMPONENTS';
 import { ImagePost } from '../models/ImagePost';
 import validateEntityLink from './validateEntityLink';
-import validateImageFileLink from './validateImageFileLink';
 import validateLicenseLink from './validateLicenseLink';
+import validateRasterImageFileLink from './validateRasterImageFileLink';
+import validateVectorImageFileLink from './validateVectorImageFileLink';
 import { ValidationFault } from './ValidationFault';
 const createMissingFieldError = (field: string) => ({
     field,
@@ -22,10 +23,13 @@ export const validateImagePost = (payload: ImagePost) => {
         if (links) {
             faults.push(...validateEntityLink(links.generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
             faults.push(...validateLicenseLink(links.license, 'license', true));
-            faults.push(...validateImageFileLink(links.sourceFile, 'sourceFile', true));
+            faults.push(...validateRasterImageFileLink(links.sourceFile, 'sourceFile', true));
             faults.push(
                 ...validateEntityLink(links.specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
             );
+            if (links.vectorFile) {
+                faults.push(...validateVectorImageFileLink(links.vectorFile, 'vectorFile', true));
+            }
             if (!attribution && links.license && (LICENSE_COMPONENTS[links.license.href] || '').indexOf('by') >= 0) {
                 faults.push({
                     field: 'attribution',

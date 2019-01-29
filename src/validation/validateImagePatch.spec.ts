@@ -19,15 +19,10 @@ describe('validation/validateImagePatch', () => {
                 expect(Array.isArray(result)).to.be.true;
                 /* tslint:enable:no-unused-expression */
             });
-            it(`should yield ${errorFields.length} error${errorFields.length === 1 ? '' : 's'}`, () => {
-                expect(result.length).to.equal(errorFields.length);
+            it('should yield the expected error fields', () => {
+                const actual = result.map((fault) => fault.field);
+                expect(actual).to.deep.equal(errorFields);
             });
-            if (errorFields.length) {
-                it('should yield the expected error fields', () => {
-                    const actual = result.map((fault) => fault.field);
-                    expect(actual).to.deep.equal(errorFields);
-                });
-            }
         });
     };
     test(null, ['']);
@@ -86,4 +81,38 @@ describe('validation/validateImagePatch', () => {
         '_links.license.href',
         '_links.specificNode.href',
     ]);
+    test({ _links: { sourceFile: { href: 'data:image/bmp;base64,FOO' } } }, []);
+    test({ _links: { sourceFile: { href: 'data:image/gif;base64,FOO' } } }, []);
+    test({ _links: { sourceFile: { href: 'data:image/jpeg;base64,FOO' } } }, []);
+    test({ _links: { sourceFile: { href: 'data:image/png;base64,FOO' } } }, []);
+    test({ _links: { sourceFile: { href: '/foo' } } }, ['_links.sourceFile.href']);
+    test({ _links: { sourceFile: { href: 'data:image/png,FOO' } } }, ['_links.sourceFile.href']);
+    test({ _links: { sourceFile: { href: 'data:image/tiff;base64,FOO' } } }, ['_links.sourceFile.href']);
+    test({
+        _links: {
+            sourceFile: {
+                href: 'data:image/png;base64,FOO',
+            },
+            vectorFile: {
+                href: 'data:image/svg+xml,FOO',
+            },
+        },
+    }, []);
+    test({
+        _links: {
+            sourceFile: {
+                href: 'data:image/png;base64,FOO',
+            },
+            vectorFile: {
+                href: 'data:image/svg+xml,FOO',
+            },
+        },
+    }, []);
+    test({
+        _links: {
+            vectorFile: {
+                href: 'data:image/svg+xml,FOO',
+            },
+        },
+    }, ['_links.sourceFile']);
 });
