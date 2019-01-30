@@ -140,6 +140,7 @@ describe('validation/validateImagePost', () => {
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
+                vectorFile: null,
             },
             attribution: null,
         };
@@ -157,6 +158,7 @@ describe('validation/validateImagePost', () => {
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
+                vectorFile: null,
             },
             attribution: '   ',
         };
@@ -174,6 +176,7 @@ describe('validation/validateImagePost', () => {
                 specificNode: {
                     href: `/nodes/${UUIDV4}`,
                 },
+                vectorFile: null,
             },
             attribution: 'foo',
         };

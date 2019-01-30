@@ -4,7 +4,7 @@ export declare interface ImagePostLinks {
     readonly license: Link;
     readonly sourceFile: Link;
     readonly specificNode: Link;
-    readonly vectorFile?: Link;
+    readonly vectorFile: Link | null;
 }
 export declare interface ImagePost {
     readonly _links: ImagePostLinks;

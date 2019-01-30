@@ -11,6 +11,7 @@ export declare interface ImageLinks extends ImagePostLinks, Links {
     readonly sourceFile: MediaLink;
     readonly submission: Link;
     readonly 'twitter:image': MediaLink;
+    readonly vectorLink: MediaLink | null;
 }
 export declare interface Image extends Entity {
     readonly _links: ImageLinks;
