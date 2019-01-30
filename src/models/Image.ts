@@ -13,7 +13,7 @@ export declare interface ImageLinks extends Links {
     readonly specificNode: Link;
     readonly submission: Link;
     readonly 'twitter:image': MediaLink | null;
-    readonly vectorLink: MediaLink | null;
+    readonly vectorFile: MediaLink | null;
 }
 export declare interface Image extends Entity {
     readonly _links: ImageLinks;
