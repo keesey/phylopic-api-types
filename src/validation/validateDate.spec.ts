@@ -7,8 +7,7 @@ describe('validation/validateDate', () => {
         describe(`when given "${value}"`, () => {
             let result: ReadonlyArray<ValidationFault> = [];
             beforeEach(() => {
-                const query: { [name: string]: string; } = { value };
-                result = validateDate(query, 'value');
+                result = validateDate(value, 'value');
             });
             it('should yield an array', () => {
                 /* tslint:disable:no-unused-expression */
