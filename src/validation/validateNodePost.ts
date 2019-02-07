@@ -1,7 +1,7 @@
+import { Link } from '../models/Link';
 import { NodePost } from '../models/NodePost';
-import { TitledLink } from '../models/TitledLink';
 import validateEntityLink from './validateEntityLink';
-import validateLink from './validateLink';
+import validateExternalLink from './validateExternalLink';
 import validateLinks from './validateLinks';
 import validateNodeName from './validateNodeName';
 import { ValidationFault } from './ValidationFault';
@@ -22,31 +22,11 @@ export const validateNodePost = (payload: NodePost) => {
                     if (!Array.isArray(external)) {
                         faults.push({
                             field: '_links.external',
-                            message: 'The list of external links must be an array.',
+                            message: 'External links must be an array.',
                         });
                     } else {
-                        external.forEach((link: TitledLink, index) => {
-                            const field = `external[${index}]`;
-                            if (!link || typeof link !== 'object') {
-                                faults.push({
-                                    field: `_links.${field}`,
-                                    message: 'Invalid entry in external links.',
-                                });
-                            } else {
-                                const linkErrors = validateLink(link, field);
-                                if (linkErrors.length) {
-                                    faults.push(...linkErrors);
-                                } else {
-                                    if (typeof link.href && !/http:\/\/eol\.org\/\d+$/.test(link.href)) {
-                                        faults.push({
-                                            field: `_links.${field}.href`,
-                                            message:
-                                                'Currently PhyloPic only accepts external links to the'
-                                                + ' Encyclopedia of Life (format: <http://eol.org/:taxonID>).',
-                                        });
-                                    }
-                                }
-                            }
+                        external.forEach((link: Link, index) => {
+                            faults.push(...validateExternalLink(link, `external[${index}]`));
                         });
                     }
                 }

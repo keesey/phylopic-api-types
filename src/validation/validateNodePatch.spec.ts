@@ -17,13 +17,14 @@ describe('validation/validateNodePatch', () => {
                 expect(Array.isArray(result)).to.be.true;
                 /* tslint:enable:no-unused-expression */
             });
-            it(`should yield ${errorFields.length} error${errorFields.length === 1 ? '' : 's'}`, () => {
-                expect(result.length).to.equal(errorFields.length);
-            });
             if (errorFields.length) {
                 it('should yield the expected error fields', () => {
                     const actual = result.map((fault) => fault.field);
                     expect(actual).to.deep.equal(errorFields);
+                });
+            } else {
+                it('should yield no errors', () => {
+                    expect(result.length).to.equal(0);
                 });
             }
         });
@@ -37,24 +38,20 @@ describe('validation/validateNodePatch', () => {
     test({ _links: { external: [null] } }, ['_links.external[0]']);
     test({ _links: { external: [{}] } }, ['_links.external[0].href']);
     test(
-        { _links: { external: [{ href: 'foo', title: 'bar'}] } },
-        ['_links.external[0].href', '_links.external[0].title'],
-    );
-    test(
-        { _links: { external: [{ href: 'http://eol.org/1', title: 'bar'}] } },
-        ['_links.external[0].title'],
-    );
-    test(
-        { _links: { external: [{ href: 'foo', title: 'Encyclopedia of Life'}] } },
+        { _links: { external: [{ href: 'foo' }] } },
         ['_links.external[0].href'],
     );
-    test({ _links: { external: [{ href: 'http://eol.org/1', title: 'Encyclopedia of Life'}] } });
+    test(
+        { _links: { external: [{ href: 'foo' }] } },
+        ['_links.external[0].href'],
+    );
+    test({ _links: { external: [{ href: 'https://eol.org/pages/1' }] } });
     test(
         { _links: { external: [
-            { href: 'http://eol.org/1', title: 'Encyclopedia of Life'},
-            { href: 'foo', title: 'bar'},
+            { href: 'https://eol.org/pages/1' },
+            { href: 'foo' },
         ] } },
-        ['_links.external[1].href', '_links.external[1].title'],
+        ['_links.external[1].href'],
     );
     test({ _links: { parentNode: null } });
     test({ _links: { parentNode: {} } }, ['_links.parentNode.href']);
@@ -110,8 +107,8 @@ describe('validation/validateNodePatch', () => {
         {
             _links: {
                 external: [
-                    { href: 'http://eol.org/1' },
-                    { href: 'http://eol.org/2', title: 'Encyclopedia of Life' },
+                    { href: 'https://eol.org/pages/1' },
+                    { href: 'https://eol.org/pages/2' },
                 ],
                 parentNode: {
                     href: `/nodes/${UUIDV4}`,

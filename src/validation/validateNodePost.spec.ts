@@ -17,13 +17,14 @@ describe('validation/validateNodePost', () => {
                 expect(Array.isArray(result)).to.be.true;
                 /* tslint:enable:no-unused-expression */
             });
-            it(`should yield ${errorFields.length} error${errorFields.length === 1 ? '' : 's'}`, () => {
-                expect(result.length).to.equal(errorFields.length);
-            });
             if (errorFields.length) {
                 it('should yield the expected error fields', () => {
                     const actual = result.map((fault) => fault.field);
                     expect(actual).to.deep.equal(errorFields);
+                });
+            } else {
+                it('should yield no errors', () => {
+                    expect(result.length).to.equal(0);
                 });
             }
         });
@@ -41,12 +42,12 @@ describe('validation/validateNodePost', () => {
         ['_links.external[0].href', '_links.parentNode', 'names'],
     );
     test(
-        { _links: { external: [{ href: 'http://eol.org/1'}] } },
+        { _links: { external: [{ href: 'https://eol.org/pages/1'}] } },
         ['_links.parentNode', 'names'],
     );
     test(
         { _links: { external: [
-            { href: 'http://eol.org/1'},
+            { href: 'https://eol.org/pages/1'},
             { href: 'foo'},
         ] } },
         ['_links.external[1].href', '_links.parentNode', 'names'],
@@ -106,8 +107,8 @@ describe('validation/validateNodePost', () => {
         {
             _links: {
                 external: [
-                    { href: 'http://eol.org/1' },
-                    { href: 'http://eol.org/2' },
+                    { href: 'https://eol.org/pages/1' },
+                    { href: 'https://eol.org/pages/2' },
                 ],
                 parentNode: {
                     href: `/nodes/${UUIDV4}`,

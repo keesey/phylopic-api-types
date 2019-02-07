@@ -9,18 +9,16 @@ export const validateLink = (link: Link | null, property: string, required = fal
                 message: `A "${property}" link is required.`,
             });
         }
-    } else {
-        if (typeof link !== 'object') {
-            faults.push({
-                field: `_links.${property}`,
-                message: `The "${property}" link is not an object.`,
-            });
-        } else if (!link.href || typeof link.href !== 'string') {
-            faults.push({
-                field: `_links.${property}.href`,
-                message: `The "${property}" link has an invalid hypertext reference.`,
-            });
-        }
+    } else if (typeof link !== 'object') {
+        faults.push({
+            field: `_links.${property}`,
+            message: `The "${property}" link is not an object.`,
+        });
+    } else if (!link.href || typeof link.href !== 'string') {
+        faults.push({
+            field: `_links.${property}.href`,
+            message: `The "${property}" link has an invalid hypertext reference.`,
+        });
     }
     return faults as ReadonlyArray<ValidationFault>;
 };

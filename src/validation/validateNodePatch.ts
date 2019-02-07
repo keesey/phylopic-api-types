@@ -1,8 +1,7 @@
 import { Link } from '../models/Link';
 import { NodePatch } from '../models/NodePatch';
-import { TitledLink } from '../models/TitledLink';
 import validateEntityLink from './validateEntityLink';
-import validateLink from './validateLink';
+import validateExternalLink from './validateExternalLink';
 import validateLinks from './validateLinks';
 import validateNodeName from './validateNodeName';
 import { ValidationFault } from './ValidationFault';
@@ -23,36 +22,11 @@ export const validateNodePatch = (payload: NodePatch) => {
                     if (!Array.isArray(external)) {
                         faults.push({
                             field: '_links.external',
-                            message: 'Invalid entry in external links.',
+                            message: 'External links must be an array.',
                         });
                     } else {
-                        external.forEach((link: Link & Partial<TitledLink>, index) => {
-                            const field = `external[${index}]`;
-                            if (!link || typeof link !== 'object') {
-                                faults.push({
-                                    field: `_links.${field}`,
-                                    message: 'Invalid entry in external links.',
-                                });
-                            } else {
-                                const linkFaults = validateLink(link, field);
-                                if (linkFaults.length) {
-                                    faults.push(...linkFaults);
-                                } else if (typeof link.href && !/http:\/\/eol\.org\/\d+$/.test(link.href)) {
-                                    faults.push({
-                                        field: `_links.${field}.href`,
-                                        message:
-                                            'Currently PhyloPic only accepts external links to the'
-                                            + ' Encyclopedia of Life (format: <http://eol.org/:taxonID>).',
-                                    });
-                                }
-                                if (link.title !== undefined && link.title !== 'Encyclopedia of Life') {
-                                    faults.push({
-                                        field: `_links.${field}.title`,
-                                        message:
-                                            'External link must be titled "Encyclopedia of Life".',
-                                    });
-                                }
-                            }
+                        external.forEach((link: Link, index) => {
+                            faults.push(...validateExternalLink(link, `external[${index}]`));
                         });
                     }
                 }
