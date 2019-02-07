@@ -26,7 +26,7 @@ export const validateExternalLink = (link: Link, field: string) => {
             ...faults,
             {
                 field: `_links.${field}.href`,
-                message: 'The external resource for this link is not recognized.',
+                message: `The external resource for this link is not recognized: ${link.href}`,
             },
         ];
     }
