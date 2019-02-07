@@ -5,7 +5,7 @@ import validateExternalLink from './validateExternalLink';
 import validateLinks from './validateLinks';
 import validateNodeName from './validateNodeName';
 import { ValidationFault } from './ValidationFault';
-export const validateNodePost = (payload: NodePost) => {
+export const validateNodePost = (payload: NodePost, allowRoot = false) => {
     let faults: ValidationFault[] = [];
     if (!payload || typeof payload !== 'object') {
         faults.push({
@@ -36,7 +36,11 @@ export const validateNodePost = (payload: NodePost) => {
                 }
             }
         }
-        if (_links && (!_links.parentNode || typeof _links.parentNode !== 'object')) {
+        if (
+            _links
+            && (!_links.parentNode || typeof _links.parentNode !== 'object')
+            && !(allowRoot && _links.parentNode === null)
+        ) {
             faults.push({
                 field: '_links.parentNode',
                 message: 'This phylogenetic node requires a parent node.',
@@ -57,7 +61,7 @@ export const validateNodePost = (payload: NodePost) => {
                 field: 'root',
                 message: 'Invalid root flag.',
             });
-        } else if (root) {
+        } else if (!allowRoot && root) {
             faults.push({
                 field: 'root',
                 message: 'New phylogenetic nodes cannot be root nodes.',

@@ -9,7 +9,7 @@ const createMissingFieldError = (field: string) => ({
     field,
     message: `The "${field}" field is missing.`,
 } as ValidationFault);
-export const validateImagePost = (payload: ImagePost) => {
+export const validateImagePost = (payload: ImagePost, allowLegacyLicenses = false) => {
     const faults: ValidationFault[] = [];
     if (!payload || typeof payload !== 'object') {
         faults.push({
@@ -22,7 +22,7 @@ export const validateImagePost = (payload: ImagePost) => {
         const { _links: links } = payload;
         if (links) {
             faults.push(...validateEntityLink(links.generalNode, 'generalNode', 'nodes', 'phylogenetic node'));
-            faults.push(...validateLicenseLink(links.license, 'license', true));
+            faults.push(...validateLicenseLink(links.license, 'license', true, allowLegacyLicenses));
             faults.push(...validateRasterImageFileLink(links.sourceFile, 'sourceFile', true));
             faults.push(
                 ...validateEntityLink(links.specificNode, 'specificNode', 'nodes', 'phylogenetic node', true),
