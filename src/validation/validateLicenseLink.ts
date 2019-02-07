@@ -16,7 +16,7 @@ export const validateLicenseLink = (
             ...faults,
             {
                 field: `_links.${property}.href`,
-                message: 'The requested license is not available.',
+                message: `The requested license is not available: ${link.href}`,
             },
         ];
     }
