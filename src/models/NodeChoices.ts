@@ -1,7 +1,7 @@
 import { Links } from './Links';
-import { Node } from './Node';
+import { NodeWithEmbedded } from './NodeWithEmbedded';
 export declare interface NodeChoicesEmbedded {
-    readonly choices: ReadonlyArray<Node>;
+    readonly choices: ReadonlyArray<NodeWithEmbedded>;
 }
 export declare interface NodeChoices {
     readonly _embedded: NodeChoicesEmbedded;
