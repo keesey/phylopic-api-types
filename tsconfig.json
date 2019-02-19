@@ -6,6 +6,7 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "outDir": "dist",
+        "rootDir": "src",
         "strict": true,
         "target": "es2016"
     },
