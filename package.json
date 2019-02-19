@@ -20,7 +20,9 @@
     "yarn": "^1.13.0"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "*.json",
+    "*.md"
   ],
   "homepage": "https://github.com/keesey/phylopic-api-types",
   "license": "MIT",
