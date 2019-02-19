@@ -1,6 +1,7 @@
 export * from './validateBoolean';
 export * from './validateDate';
 export * from './validateEntityLink';
+export * from './validateExternalLink';
 export * from './validateImagePatch';
 export * from './validateImagePost';
 export * from './validateLicenseComponents';
