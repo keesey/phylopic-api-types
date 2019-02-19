@@ -1,5 +1,4 @@
 export * from './Account';
-export * from './Domain';
 export * from './Entity';
 export * from './EntityReference';
 export * from './Error';
@@ -13,7 +12,6 @@ export * from './Links';
 export * from './List';
 export * from './MediaLink';
 export * from './Node';
-export * from './NodeChoices';
 export * from './NodeName';
 export * from './NodePatch';
 export * from './NodePost';

@@ -9,4 +9,5 @@ export declare interface ImagePostLinks {
 export declare interface ImagePost {
     readonly _links: ImagePostLinks;
     readonly attribution?: string | null;
+    readonly sponsor?: string | null;
 }

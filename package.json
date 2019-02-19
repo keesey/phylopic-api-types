@@ -4,20 +4,24 @@
     "name": "T. Michael Keesey"
   },
   "dependencies": {
-    "@types/is-uuid": "^1.0.0",
     "is-uuid": "^1.0.2",
     "parse-nomen": "^1.1.1"
   },
   "description": "Type declarations and validation for PhyloPic API value objects.",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/is-uuid": "^1.0.0",
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.0.2",
     "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.3.3",
+    "yarn": "^1.13.0"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "homepage": "https://github.com/keesey/phylopic-api-types",
   "license": "MIT",
   "main": "dist/index.js",
@@ -31,8 +35,12 @@
     "build": "tsc",
     "lint": "tslint ./src/**/*.ts",
     "lint-fix": "tslint ./src/**/*.ts --fix",
+    "postversion": "git push && git push --tags",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
     "test": "mocha -r ts-node/register \"./src/**/*.spec.ts\"",
-    "postinstall": "tsc"
+    "version": "yarn lint-fix && git add -A src"
   },
   "types": "dist/index.d.ts",
   "version": "2.0.0-alpha"

@@ -18,4 +18,5 @@ export declare interface ImageLinks extends Links {
 export declare interface Image extends Entity {
     readonly _links: ImageLinks;
     readonly attribution: string | null;
+    readonly sponsor: string | null;
 }
