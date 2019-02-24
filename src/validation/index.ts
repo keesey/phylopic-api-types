@@ -12,6 +12,7 @@ export * from './validateLicenseLink';
 export * from './validateLink';
 export * from './validateNodeListParameters';
 export * from './validateNodeName';
+export * from './validateNodeParameters';
 export * from './validateNodePatch';
 export * from './validateNodePost';
 export * from './validateNodeSort';
