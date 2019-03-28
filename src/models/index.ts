@@ -18,5 +18,6 @@ export * from './NodePost';
 export * from './NodeReference';
 export * from './NodeSearch';
 export * from './NodeWithEmbedded';
+export * from './QueryMatches';
 export * from './Root';
 export * from './TitledLink';
