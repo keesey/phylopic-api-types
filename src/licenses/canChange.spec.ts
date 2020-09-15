@@ -8,7 +8,7 @@ describe('licenses/canChange', () => {
             expect(actual).to.equal(permitted);
         });
     };
-    const TESTS: Array<[string, string, boolean]> = [
+    const TESTS: [string, string, boolean][] = [
         [
             'https://creativecommons.org/publicdomain/zero/1.0/',
             'https://creativecommons.org/publicdomain/zero/1.0/',

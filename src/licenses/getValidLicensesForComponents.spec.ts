@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import getValidLicensesForComponents from './getValidLicensesForComponents';
 describe('licenses/getValidLicensesForComponents', () => {
-    const TESTS: Array<[string[], string[]]> = [
+    const TESTS: [string[], string[]][] = [
         [
             [
                 'by',
